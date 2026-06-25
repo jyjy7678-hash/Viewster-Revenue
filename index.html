@@ -1502,13 +1502,23 @@ body[data-theme="light"] .toggle-track{
     applyTheme(now === 'dark' ? 'light' : 'dark');
   }
   applyTheme(localStorage.getItem('viewsterTheme') || 'dark');
-
-
-  function keepActiveTabVisible(){
+function keepActiveTabVisible(){
     const active = document.querySelector('.tabbtn.on');
     const bar = document.querySelector('.tabbar');
     if(active && bar && window.matchMedia('(max-width:700px)').matches){
-      active.scrollIntoView({behavior:'smooth', block:'nearest', inline:'nearest'});
+      const activeLeft = active.offsetLeft;
+      const activeRight = activeLeft + active.offsetWidth;
+      const visibleLeft = bar.scrollLeft;
+      const visibleRight = visibleLeft + bar.clientWidth;
+
+      let nextLeft = visibleLeft;
+      if(activeLeft < visibleLeft){
+        nextLeft = activeLeft - 8;
+      } else if(activeRight > visibleRight){
+        nextLeft = activeRight - bar.clientWidth + 8;
+      }
+
+      bar.scrollTo({ left: Math.max(0, nextLeft), behavior: 'auto' });
     }
   }
 
@@ -1539,8 +1549,14 @@ body[data-theme="light"] .toggle-track{
     const hero = document.getElementById('heroIntro');
     if(hero) hero.hidden = (id !== 't-summary');
     document.querySelectorAll('.tabbtn').forEach(b=>b.classList.remove('on'));
-    btn.classList.add('on');
+    if(btn){
+      btn.classList.add('on');
+    } else {
+      const targetBtn = document.querySelector(`.tabbtn[onclick*="${id}"]`);
+      if(targetBtn) targetBtn.classList.add('on');
+    }
     keepActiveTabVisible();
+    window.scrollTo(0, 0);
   }
   function openUnitRevenue(){
     document.getElementById('unitRevenueModal').classList.add('show');
