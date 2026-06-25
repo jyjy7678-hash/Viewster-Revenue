@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VIEWSTER — 수익구조 및 비전 미팅 자료</title>
+<style>
+  :root{
+    --bg:#070A12;
+    --bg2:#0D1324;
+    --panel:#111827;
+    --panel2:#172033;
+    --card:#0F172A;
+    --card2:#111C32;
+    --line:rgba(255,255,255,.11);
+    --line2:rgba(255,255,255,.18);
+    --text:#F8FAFC;
+    --muted:#A8B3C7;
+    --soft:#CBD5E1;
+    --gold:#F6C85F;
+    --gold2:#D6A84F;
+    --blue:#5EA0FF;
+    --cyan:#63E6E2;
+    --green:#4ADE80;
+    --red:#F87171;
+    --purple:#A78BFA;
+    --pink:#F472B6;
+    --orange:#FB923C;
+    --shadow:0 24px 80px rgba(0,0,0,.38);
+    --radius:24px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    min-height:100vh;
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Segoe UI",sans-serif;
+    background:
+      radial-gradient(circle at 12% -8%, rgba(246,200,95,.28), transparent 32%),
+      radial-gradient(circle at 86% 10%, rgba(94,160,255,.22), transparent 30%),
+      radial-gradient(circle at 65% 74%, rgba(99,230,226,.11), transparent 28%),
+      linear-gradient(180deg, #060810 0%, #0B1020 36%, #090B12 100%);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size:42px 42px;
+    mask-image:linear-gradient(to bottom, rgba(0,0,0,.7), transparent 82%);
+    z-index:-1;
+  }
+  .wrap{max-width:1220px; margin:0 auto; padding:0 26px 80px;}
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(7,10,18,.74);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(18px);
+  }
+  .topbar-inner{
+    max-width:1220px; margin:0 auto; padding:12px 26px;
+    display:flex; align-items:center; justify-content:space-between; gap:18px;
+  }
+  .brand{display:flex; align-items:center; gap:12px; min-width:190px;}
+  .brand-mark{
+    width:38px; height:38px; border-radius:13px;
+    display:grid; place-items:center;
+    background:linear-gradient(135deg, #F6C85F, #E08B32 45%, #5EA0FF 100%);
+    box-shadow:0 0 34px rgba(246,200,95,.28);
+    font-weight:1000; color:#08111F; letter-spacing:-1px;
+  }
+  .brand-name{font-weight:900; letter-spacing:.5px; line-height:1.1;}
+  .brand-name small{display:block; color:var(--muted); font-weight:700; font-size:11px; letter-spacing:0; margin-top:2px;}
+  .tabbar{display:flex; gap:7px; flex-wrap:wrap; justify-content:flex-end;}
+  .tabbtn{
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.055);
+    color:#DCE6F5;
+    font-weight:800;
+    font-size:12.5px;
+    padding:9px 12px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:.18s ease;
+    white-space:nowrap;
+  }
+  .tabbtn:hover{background:rgba(255,255,255,.11); transform:translateY(-1px);}
+  .tabbtn.on{background:linear-gradient(135deg, var(--gold), #FFE8A5); color:#111827; border-color:rgba(255,255,255,.35); box-shadow:0 10px 30px rgba(246,200,95,.24);}
+  .hero{padding:64px 0 34px; position:relative; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.12fr .88fr; gap:28px; align-items:stretch;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid rgba(246,200,95,.36);
+    color:#FFE8A5;
+    background:rgba(246,200,95,.10);
+    padding:7px 12px; border-radius:999px; font-weight:900; font-size:12px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 18px var(--gold);}
+  h1{font-size:clamp(38px, 5vw, 72px); letter-spacing:-3px; line-height:1.03; margin:0 0 18px;}
+  .gradient-text{background:linear-gradient(92deg, #fff 0%, #FFE8A5 38%, #8ED6FF 74%, #fff 100%); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .hero-lead{font-size:18px; color:#D4DCEB; max-width:780px; margin:0 0 26px;}
+  .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;}
+  .hero-pill{
+    border:1px solid var(--line2);
+    background:rgba(255,255,255,.06);
+    color:#E7EEFB;
+    padding:11px 14px;
+    border-radius:15px;
+    font-size:13px; font-weight:800;
+  }
+  .hero-pill b{color:var(--gold);}
+  .glass{
+    border:1px solid var(--line2);
+    background:linear-gradient(180deg, rgba(255,255,255,.105), rgba(255,255,255,.045));
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    backdrop-filter:blur(18px);
+  }
+  .hero-card{padding:22px; position:relative; overflow:hidden; min-height:360px;}
+  .hero-card::before{
+    content:""; position:absolute; width:220px; height:220px; right:-70px; top:-72px; border-radius:50%;
+    background:radial-gradient(circle, rgba(246,200,95,.34), transparent 64%);
+  }
+  .phone{
+    width:100%; max-width:340px; margin:0 auto; border:1px solid rgba(255,255,255,.16); border-radius:34px;
+    padding:12px; background:#0B0F1D; box-shadow:0 28px 70px rgba(0,0,0,.35); position:relative; z-index:2;
+  }
+  .phone-screen{border-radius:24px; overflow:hidden; background:linear-gradient(180deg, #141C2E, #0A0F1C); border:1px solid rgba(255,255,255,.08);}
+  .video{height:150px; background:linear-gradient(135deg, rgba(94,160,255,.35), rgba(246,200,95,.24)), radial-gradient(circle at 70% 35%, rgba(255,255,255,.25), transparent 17%), #111827; display:grid; place-items:center; position:relative;}
+  .play{width:62px; height:62px; border-radius:50%; display:grid; place-items:center; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.22); backdrop-filter:blur(10px);}
+  .play::before{content:""; margin-left:5px; border-left:18px solid #fff; border-top:12px solid transparent; border-bottom:12px solid transparent;}
+  .banner-ad{margin:10px; padding:10px 12px; border-radius:14px; background:linear-gradient(90deg, rgba(246,200,95,.18), rgba(94,160,255,.15)); border:1px solid rgba(246,200,95,.24); display:flex; justify-content:space-between; align-items:center; font-size:12px; color:#FFE8A5; font-weight:900;}
+  .reward-row{display:grid; grid-template-columns:1fr auto; gap:10px; padding:0 10px 12px; align-items:center;}
+  .progress{height:9px; background:rgba(255,255,255,.08); border-radius:999px; overflow:hidden;}
+  .progress span{display:block; width:78%; height:100%; background:linear-gradient(90deg, var(--gold), var(--blue)); border-radius:999px;}
+  .box-btn{padding:8px 10px; border-radius:999px; background:var(--gold); color:#111827; font-size:11px; font-weight:1000; white-space:nowrap;}
+  .phone-cards{display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:0 10px 14px;}
+  .phone-mini{background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.09); border-radius:14px; padding:9px;}
+  .phone-mini b{font-size:12px; display:block; color:#fff;}
+  .phone-mini span{font-size:10.5px; color:var(--muted);}
+  section{padding-top:22px;}
+  .tabpanel{animation:fade .24s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
+  .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin:30px 0 16px;}
+  .kicker{color:var(--gold); font-size:12px; font-weight:1000; letter-spacing:.12em; text-transform:uppercase; margin-bottom:6px;}
+  h2{font-size:28px; line-height:1.2; letter-spacing:-1px; margin:0;}
+  .section-desc{color:var(--muted); font-size:14px; max-width:620px;}
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .grid2{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
+  .grid4{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+  .card{border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035)); border-radius:22px; padding:20px; box-shadow:0 18px 58px rgba(0,0,0,.18); position:relative; overflow:hidden;}
+  .card:hover{border-color:rgba(246,200,95,.30);}
+  .clickable-card{cursor:pointer; transition:.2s ease;}
+  .clickable-card:hover{transform:translateY(-4px); border-color:rgba(246,200,95,.48); box-shadow:0 26px 70px rgba(0,0,0,.28);}
+  .card-hint{display:inline-flex; align-items:center; gap:6px; margin-top:14px; color:var(--gold); font-size:12px; font-weight:1000;}
+  .unit-hero{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:16px 0 18px;}
+  .unit-box{border:1px solid var(--line); background:rgba(255,255,255,.055); border-radius:20px; padding:16px; text-align:center;}
+  .unit-box .label{font-size:12px; color:var(--muted); font-weight:900;}
+  .unit-box .value{font-size:34px; font-weight:1000; color:#fff; letter-spacing:-1px; margin-top:4px;}
+  .unit-box .value.gold{color:var(--gold);}
+  .unit-arrow{display:flex; align-items:center; justify-content:center; color:var(--gold); font-size:24px; font-weight:1000;}
+  .unit-formula{font-size:18px; line-height:1.55; border:1px solid rgba(246,200,95,.26); background:linear-gradient(135deg, rgba(246,200,95,.14), rgba(94,160,255,.08)); border-radius:22px; padding:18px; margin-top:16px;}
+  .unit-formula b{color:var(--gold);}
+  @media (max-width:700px){.unit-hero{grid-template-columns:1fr;}.unit-arrow{transform:rotate(90deg);}}
+  .card-icon{width:45px; height:45px; display:grid; place-items:center; border-radius:15px; background:rgba(246,200,95,.14); color:var(--gold); font-size:22px; margin-bottom:13px;}
+  .card h3{font-size:18px; margin:0 0 8px; letter-spacing:-.35px;}
+  .card p{margin:0; color:var(--muted); font-size:13.5px;}
+  .big-num{font-size:42px; line-height:1; font-weight:1000; letter-spacing:-1.6px; color:#fff; margin:8px 0 4px;}
+  .big-num.gold{color:var(--gold); text-shadow:0 0 26px rgba(246,200,95,.22);}
+  .metric-label{color:var(--muted); font-size:12px; font-weight:800;}
+  .flow{display:grid; grid-template-columns:repeat(5,1fr); gap:10px; align-items:stretch;}
+  .flow-node{padding:16px 12px; text-align:center; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.055); position:relative;}
+  .flow-node:not(:last-child)::after{content:"→"; position:absolute; right:-13px; top:50%; transform:translateY(-50%); color:var(--gold); font-weight:900; z-index:2;}
+  .flow-node .emoji{font-size:24px; margin-bottom:6px;}
+  .flow-node b{font-size:14px; display:block;}
+  .flow-node span{font-size:11.5px; color:var(--muted); display:block; margin-top:3px;}
+  .timeline{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .growth-card{
+    border:1px solid var(--line2); border-radius:24px; padding:22px; cursor:pointer;
+    background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+    transition:.2s ease; position:relative; overflow:hidden; min-height:260px;
+  }
+  .growth-card::before{content:""; position:absolute; width:150px; height:150px; right:-50px; top:-40px; border-radius:50%; background:radial-gradient(circle, rgba(246,200,95,.24), transparent 68%);}
+  .growth-card:hover{transform:translateY(-5px); border-color:rgba(246,200,95,.46); box-shadow:0 28px 70px rgba(0,0,0,.30);}
+  .month-badge{display:inline-flex; align-items:center; gap:8px; padding:7px 11px; border-radius:999px; background:rgba(246,200,95,.13); border:1px solid rgba(246,200,95,.28); color:#FFE8A5; font-weight:900; font-size:12px;}
+  .growth-card h3{font-size:25px; letter-spacing:-.8px; margin:18px 0 8px;}
+  .growth-card .members{font-size:48px; color:#fff; font-weight:1000; line-height:1; letter-spacing:-2px; margin:12px 0;}
+  .growth-card .members small{font-size:16px; color:var(--muted); font-weight:800; letter-spacing:0;}
+  .growth-list{margin:16px 0 0; padding:0; list-style:none; color:var(--muted); font-size:13px;}
+  .growth-list li{display:flex; justify-content:space-between; gap:10px; padding:7px 0; border-top:1px solid rgba(255,255,255,.07);}
+  .growth-list b{color:#fff;}
+  .clickhint{margin-top:14px; color:var(--gold); font-size:12px; font-weight:1000;}
+  table{width:100%; border-collapse:collapse; border:1px solid var(--line); overflow:hidden; border-radius:18px; background:rgba(255,255,255,.04);}
+  th,td{padding:13px 15px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; font-size:13px;}
+  tr:last-child td{border-bottom:none;}
+  th{color:#DFE8F7; background:rgba(255,255,255,.07); font-size:12px; letter-spacing:-.1px;}
+  td{color:#C9D3E5;}
+  td strong{color:#fff;}
+  .num{text-align:right; white-space:nowrap; font-weight:900; color:#fff;}
+  .pill{display:inline-flex; align-items:center; padding:4px 9px; border-radius:999px; border:1px solid rgba(255,255,255,.13); background:rgba(255,255,255,.06); font-size:11px; font-weight:900; color:#DDE7F7;}
+  .pill.gold{background:rgba(246,200,95,.13); color:#FFE7A1; border-color:rgba(246,200,95,.27);}
+  .callout{border:1px solid rgba(246,200,95,.25); background:linear-gradient(135deg, rgba(246,200,95,.12), rgba(94,160,255,.08)); border-radius:22px; padding:18px 20px; color:#DCE6F5;}
+  .callout b{color:#FFE8A5;}
+  .compare{display:grid; grid-template-columns:1fr 70px 1fr; gap:14px; align-items:stretch;}
+  .compare-mid{display:grid; place-items:center; font-size:30px; color:var(--gold); font-weight:1000;}
+  .list{margin:10px 0 0; padding-left:18px; color:var(--muted); font-size:13px;}
+  .list li{margin:6px 0;}
+  .market-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .brand-card{border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035)); border-radius:22px; padding:18px; min-height:184px; display:flex; flex-direction:column; gap:12px;}
+  .brand-top{display:flex; align-items:center; gap:12px;}
+  .brand-logo{width:64px; height:64px; border-radius:18px; background:transparent; border:none; display:grid; place-items:center; overflow:hidden; flex-shrink:0; box-shadow:none;}
+  .brand-logo img{width:100%; height:100%; object-fit:cover; padding:0; background:transparent; display:block;}
+  .brand-logo span{width:100%; height:100%; display:grid; place-items:center; color:#111827; font-weight:1000; font-size:12px; text-align:center; padding:3px; background:linear-gradient(135deg, #fff, #DDE7F7); border-radius:18px;}
+  .brand-card h3{margin:0; font-size:17px;}
+  .brand-card p{margin:0; color:var(--muted); font-size:13px;}
+  .logo-note{font-size:12px; color:#94A3B8; margin-top:12px;}
+  .platform-orbit{position:relative; min-height:420px; border:1px solid var(--line); border-radius:28px; overflow:hidden; background:radial-gradient(circle at center, rgba(246,200,95,.18), transparent 24%), rgba(255,255,255,.035);}
+  .orbit-center{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:180px; height:180px; border-radius:50%; background:linear-gradient(135deg, var(--gold), #FFE8A5); color:#111827; display:grid; place-items:center; font-size:25px; font-weight:1000; box-shadow:0 0 80px rgba(246,200,95,.30);}
+  .orbit-item{position:absolute; min-width:120px; text-align:center; padding:11px 14px; border-radius:999px; background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.14); font-weight:900; color:#fff;}
+  .orbit-item small{display:block; font-size:10px; color:var(--muted); font-weight:700;}
+  .o1{left:12%; top:14%;}.o2{right:10%; top:16%;}.o3{left:7%; bottom:17%;}.o4{right:11%; bottom:17%;}.o5{left:50%; top:8%; transform:translateX(-50%);}.o6{left:50%; bottom:9%; transform:translateX(-50%);}
+  .modal-backdrop{position:fixed; inset:0; background:rgba(0,0,0,.68); z-index:100; display:none; align-items:center; justify-content:center; padding:24px; backdrop-filter:blur(8px);}
+  .modal-backdrop.show{display:flex;}
+  .modal{width:min(980px, 100%); max-height:90vh; overflow:auto; border:1px solid rgba(255,255,255,.18); background:linear-gradient(180deg, #101827, #090E1A); border-radius:30px; box-shadow:0 40px 120px rgba(0,0,0,.55); position:relative;}
+  .modal-header{padding:26px 28px 16px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:20px; align-items:flex-start;}
+  .modal-header h3{font-size:28px; line-height:1.2; margin:0 0 7px; letter-spacing:-.9px;}
+  .modal-sub{color:var(--muted); font-size:13.5px;}
+  .close{width:42px; height:42px; border-radius:50%; display:grid; place-items:center; border:1px solid var(--line2); background:rgba(255,255,255,.07); color:#fff; cursor:pointer; font-size:22px; flex-shrink:0;}
+  .modal-body{padding:20px 28px 28px;}
+  .modal-metrics{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:18px;}
+  .modal-metric{border:1px solid var(--line); background:rgba(255,255,255,.055); border-radius:18px; padding:15px;}
+  .modal-metric .v{font-size:23px; font-weight:1000; color:#fff; letter-spacing:-.7px;}
+  .modal-metric .l{font-size:11.5px; color:var(--muted); margin-top:4px; font-weight:800;}
+  .modal-total{border:1px solid rgba(246,200,95,.34); background:linear-gradient(135deg, rgba(246,200,95,.16), rgba(94,160,255,.09)); border-radius:22px; padding:18px; margin-top:16px; display:flex; align-items:center; justify-content:space-between; gap:16px;}
+  .modal-total .v{font-size:34px; color:var(--gold); font-weight:1000; letter-spacing:-1px;}
+  .formula{font-family:"SF Mono",ui-monospace,Menlo,monospace; font-size:12px; color:#C6D3E8; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.09); border-radius:14px; padding:12px 14px; margin-top:12px;}
+  .mini-note{color:var(--muted); font-size:12px; margin-top:12px;}
+  .footer{margin:44px 0 0; border-top:1px solid var(--line); color:#8D9BB4; font-size:12px; padding:18px 0;}
+  .source-box{border:1px dashed rgba(255,255,255,.18); border-radius:20px; padding:16px 18px; color:#B7C2D6; font-size:13px; background:rgba(255,255,255,.035);}
+  .asset-table code{color:#FFE7A1; font-size:12px;}
+
+  .brand-mark{overflow:hidden; position:relative;}
+  .brand-mark img{width:100%; height:100%; object-fit:cover; padding:0; background:transparent; display:block;}
+  .brand-mark span{position:absolute; inset:0; display:grid; place-items:center;}
+  .ad-hero{display:grid; grid-template-columns:1.04fr .96fr; gap:18px; align-items:stretch; margin-bottom:20px;}
+  .ad-showcase{padding:22px; min-height:420px; position:relative; overflow:hidden;}
+  .ad-showcase::before{content:""; position:absolute; width:320px; height:320px; right:-120px; top:-110px; border-radius:50%; background:radial-gradient(circle, rgba(246,200,95,.25), transparent 66%);}
+  .ad-screen{position:relative; z-index:1; height:100%; min-height:375px; border:1px solid rgba(255,255,255,.14); border-radius:26px; overflow:hidden; background:linear-gradient(180deg,#121B2D,#070B14); box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);}
+  .ad-video-area{height:205px; display:grid; place-items:center; position:relative; background:linear-gradient(135deg,rgba(94,160,255,.24),rgba(246,200,95,.13)), radial-gradient(circle at 68% 38%, rgba(255,255,255,.26), transparent 16%), #101827;}
+  .ad-video-area .play{transform:scale(.86);}
+  .ad-banner-strip{position:absolute; left:18px; right:18px; bottom:18px; border:1px solid rgba(246,200,95,.42); background:linear-gradient(90deg, rgba(246,200,95,.24), rgba(94,160,255,.16)); border-radius:16px; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; color:#FFE8A5; font-weight:1000; box-shadow:0 14px 38px rgba(0,0,0,.26);}
+  .ad-timeline-ui{padding:18px; display:grid; gap:14px;}
+  .ad-timebar{height:13px; border-radius:999px; overflow:hidden; background:rgba(255,255,255,.08);}
+  .ad-timebar span{display:block; height:100%; width:72%; border-radius:999px; background:linear-gradient(90deg,var(--gold),var(--blue));}
+  .ad-mini-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px;}
+  .ad-mini{border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.055); border-radius:16px; padding:12px;}
+  .ad-mini b{display:block; font-size:13px; color:#fff;}
+  .ad-mini span{font-size:11.5px; color:var(--muted);}
+  .ad-preroll{border:1px solid rgba(94,160,255,.28); background:linear-gradient(135deg,rgba(94,160,255,.17),rgba(246,200,95,.11)); border-radius:20px; padding:14px 16px; display:flex; justify-content:space-between; gap:12px; align-items:center;}
+  .ad-preroll b{color:#fff;} .ad-preroll span{color:var(--muted); font-size:12px;}
+  .ad-preroll .badge{background:var(--gold); color:#111827; border-radius:999px; padding:7px 10px; font-size:11px; font-weight:1000; white-space:nowrap;}
+  .ad-story{padding:24px; display:flex; flex-direction:column; justify-content:space-between; gap:18px;}
+  .ad-story h3{font-size:34px; line-height:1.15; letter-spacing:-1.3px; margin:0;}
+  .ad-story p{color:#D7E1F1; margin:10px 0 0;}
+  .ad-stat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:18px;}
+  .ad-stat{border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.055); border-radius:18px; padding:14px;}
+  .ad-stat .v{font-size:24px; font-weight:1000; color:var(--gold); line-height:1;}
+  .ad-stat .l{font-size:11px; color:var(--muted); margin-top:7px; font-weight:800;}
+  .ad-compare-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;}
+  .compare-card{border:1px solid var(--line); border-radius:24px; padding:22px; background:rgba(255,255,255,.045);}
+  .compare-card.weak{background:linear-gradient(180deg, rgba(248,113,113,.10), rgba(255,255,255,.035)); border-color:rgba(248,113,113,.22);}
+  .compare-card.strong{background:linear-gradient(180deg, rgba(74,222,128,.11), rgba(246,200,95,.07)); border-color:rgba(246,200,95,.28);}
+  .compare-card h3{margin:0 0 10px; font-size:20px;}
+  .compare-card ul{margin:0; padding-left:18px; color:var(--muted); font-size:13.5px;}
+  .compare-card li{margin:8px 0;}
+  .ad-wide-metric{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:16px;}
+  .ad-wide-metric .card{padding:18px;}
+  .ad-wide-metric .big-num{font-size:32px;}
+  .platform-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:16px;}
+  .platform-card{border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035)); border-radius:22px; padding:18px; min-height:170px; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;}
+  .platform-logo{width:82px; height:82px; border-radius:24px; border:none; background:transparent; overflow:hidden; display:grid; place-items:center; box-shadow:none;}
+  .platform-logo img{width:100%; height:100%; object-fit:cover; padding:0; background:transparent; display:block;}
+  .platform-logo span{width:100%; height:100%; display:grid; place-items:center; background:linear-gradient(135deg,#fff,#DDE7F7); color:#111827; font-size:12px; font-weight:1000; text-align:center; padding:4px; border-radius:24px;}
+  .platform-card h3{margin:0; font-size:17px;}
+  .platform-card p{margin:0; color:var(--muted); font-size:12.5px;}
+  .platform-note{margin-top:14px; border:1px solid rgba(246,200,95,.25); background:linear-gradient(135deg, rgba(246,200,95,.10), rgba(94,160,255,.06)); border-radius:22px; padding:16px 18px; color:#DDE7F7;}
+  @media (max-width:980px){.ad-hero,.ad-compare-grid,.ad-wide-metric,.platform-grid{grid-template-columns:1fr 1fr;}.ad-stat-grid{grid-template-columns:1fr 1fr 1fr;}}
+  @media (max-width:700px){.ad-hero,.ad-compare-grid,.ad-wide-metric,.platform-grid,.ad-stat-grid,.ad-mini-grid{grid-template-columns:1fr;}.ad-showcase{min-height:auto;}.ad-screen{min-height:auto;}.ad-video-area{height:180px;}}
+
+  @media (max-width:980px){
+    .hero-grid,.grid3,.grid4,.timeline,.market-grid,.modal-metrics{grid-template-columns:1fr 1fr;}
+    .flow{grid-template-columns:1fr 1fr;}.flow-node::after{display:none;}
+    .compare{grid-template-columns:1fr;}.compare-mid{transform:rotate(90deg); height:30px;}
+  }
+  @media (max-width:700px){
+    .wrap,.topbar-inner{padding-left:16px; padding-right:16px;}
+    .topbar-inner{align-items:flex-start; flex-direction:column;}
+    .hero{padding-top:34px;}
+    .hero-grid,.grid2,.grid3,.grid4,.timeline,.market-grid,.modal-metrics{grid-template-columns:1fr;}
+    h1{font-size:42px; letter-spacing:-2px;}
+    h2{font-size:23px;}
+    .growth-card{min-height:auto;}
+    .flow{grid-template-columns:1fr;}
+    .modal{border-radius:22px;}.modal-header,.modal-body{padding-left:18px; padding-right:18px;}
+    .modal-total{flex-direction:column; align-items:flex-start;}
+    .platform-orbit{min-height:620px;}.orbit-center{width:150px; height:150px;}.orbit-item{left:50%!important; right:auto!important; transform:translateX(-50%)!important;}
+    .o1{top:7%;}.o5{top:20%;}.o2{top:33%;}.o3{bottom:auto; top:62%;}.o6{bottom:auto; top:75%;}.o4{bottom:6%;}
+  }
+
+/* ─────────────────────────────────────────
+   Theme Toggle + High Contrast Meeting Mode
+   - 이미지 경로는 assets/*.png 유지
+   - 다크/화이트 전환 가능
+───────────────────────────────────────── */
+body[data-theme="dark"]{
+  --bg:#070A12;
+  --bg2:#0D1324;
+  --panel:#101827;
+  --panel2:#17223A;
+  --card:#111A2E;
+  --card2:#16223A;
+  --line:rgba(255,255,255,.18);
+  --line2:rgba(255,255,255,.28);
+  --text:#FFFFFF;
+  --muted:#D9E3F5;
+  --soft:#F1F6FF;
+  --shadow:0 24px 80px rgba(0,0,0,.44);
+  background:
+    radial-gradient(circle at 12% -8%, rgba(246,200,95,.28), transparent 32%),
+    radial-gradient(circle at 86% 10%, rgba(94,160,255,.24), transparent 30%),
+    linear-gradient(180deg, #060810 0%, #0B1020 38%, #070A12 100%);
+}
+body[data-theme="light"]{
+  --bg:#F6F8FC;
+  --bg2:#FFFFFF;
+  --panel:#FFFFFF;
+  --panel2:#F1F5FB;
+  --card:#FFFFFF;
+  --card2:#F7FAFF;
+  --line:rgba(17,24,39,.13);
+  --line2:rgba(17,24,39,.22);
+  --text:#101828;
+  --muted:#364152;
+  --soft:#475467;
+  --gold:#C78A12;
+  --gold2:#B77910;
+  --blue:#2563EB;
+  --cyan:#0891B2;
+  --green:#16A34A;
+  --red:#DC2626;
+  --purple:#7C3AED;
+  --pink:#DB2777;
+  --orange:#EA580C;
+  --shadow:0 18px 58px rgba(15,23,42,.12);
+  background:
+    radial-gradient(circle at 12% -8%, rgba(246,200,95,.20), transparent 31%),
+    radial-gradient(circle at 86% 8%, rgba(37,99,235,.14), transparent 29%),
+    linear-gradient(180deg, #FFFFFF 0%, #F6F8FC 46%, #EEF3FA 100%);
+}
+body[data-theme="light"]::before{
+  background-image:
+    linear-gradient(rgba(15,23,42,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,23,42,.045) 1px, transparent 1px);
+}
+.theme-toggle{
+  border:1px solid var(--line2);
+  background:rgba(255,255,255,.08);
+  color:var(--text);
+  font-weight:1000;
+  font-size:12.5px;
+  padding:9px 12px;
+  border-radius:999px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  white-space:nowrap;
+  box-shadow:0 10px 24px rgba(0,0,0,.12);
+}
+.theme-toggle:hover{transform:translateY(-1px); border-color:rgba(246,200,95,.46);}
+body[data-theme="light"] .theme-toggle{
+  background:#111827;
+  color:#fff;
+  border-color:#111827;
+}
+.topbar{background:rgba(7,10,18,.86);}
+body[data-theme="light"] .topbar{
+  background:rgba(255,255,255,.86);
+  border-bottom:1px solid rgba(17,24,39,.12);
+}
+body[data-theme="light"] .brand-name{color:#111827;}
+body[data-theme="light"] .brand-name small{color:#475467;}
+body[data-theme="light"] .tabbtn{
+  color:#263445;
+  background:#FFFFFF;
+  border-color:rgba(17,24,39,.15);
+}
+body[data-theme="light"] .tabbtn:hover{background:#F1F5F9;}
+body[data-theme="light"] .tabbtn.on{
+  background:linear-gradient(135deg,#F6C85F,#FFE7A1);
+  color:#111827;
+}
+.glass,
+.card,
+.brand-card,
+.platform-card,
+.compare-card,
+.growth-card,
+.modal,
+.source-box{
+  color:var(--text);
+}
+.glass{
+  background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.065));
+}
+.card,
+.brand-card,
+.platform-card,
+.compare-card,
+.growth-card,
+.modal-metric,
+.unit-box{
+  background:linear-gradient(180deg, rgba(255,255,255,.105), rgba(255,255,255,.055));
+  border-color:var(--line);
+}
+body[data-theme="light"] .glass,
+body[data-theme="light"] .card,
+body[data-theme="light"] .brand-card,
+body[data-theme="light"] .platform-card,
+body[data-theme="light"] .compare-card,
+body[data-theme="light"] .growth-card,
+body[data-theme="light"] .modal-metric,
+body[data-theme="light"] .unit-box{
+  background:rgba(255,255,255,.92);
+  border-color:rgba(17,24,39,.13);
+}
+.hero-lead,
+.section-desc,
+.card p,
+.brand-card p,
+.platform-card p,
+.compare-card ul,
+.metric-label,
+.modal-sub,
+.modal-metric .l,
+.mini-note,
+.footer,
+.logo-note,
+.source-box,
+.phone-mini span,
+.ad-mini span,
+.ad-preroll span,
+.ad-stat .l{
+  color:var(--muted)!important;
+}
+.card h3,
+.brand-card h3,
+.platform-card h3,
+.compare-card h3,
+.phone-mini b,
+.ad-mini b,
+.ad-preroll b,
+.modal-header h3{
+  color:var(--text)!important;
+}
+.big-num,
+.unit-box .value,
+.modal-metric .v{
+  color:var(--text)!important;
+}
+.big-num.gold,
+.unit-box .value.gold,
+.modal-total .v,
+.card-hint,
+.hero-pill b{
+  color:var(--gold)!important;
+}
+.hero-pill{
+  color:var(--text);
+  background:rgba(255,255,255,.09);
+}
+body[data-theme="light"] .hero-pill{
+  background:#FFFFFF;
+  border-color:rgba(17,24,39,.16);
+}
+.eyebrow{
+  color:var(--gold);
+  background:rgba(246,200,95,.15);
+  border-color:rgba(246,200,95,.42);
+}
+body[data-theme="light"] .gradient-text{
+  background:linear-gradient(92deg, #111827 0%, #B77910 39%, #2563EB 74%, #111827 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+body[data-theme="light"] h1,
+body[data-theme="light"] h2{
+  color:#111827;
+}
+.phone{
+  background:#111827;
+  border-color:rgba(255,255,255,.26);
+}
+.phone-screen{
+  background:linear-gradient(180deg, #182235, #0E1626);
+}
+.banner-ad{
+  color:#FFF6D6;
+  background:linear-gradient(90deg, rgba(246,200,95,.24), rgba(94,160,255,.19));
+  border-color:rgba(246,200,95,.42);
+}
+.phone-mini{
+  background:rgba(255,255,255,.105);
+  border-color:rgba(255,255,255,.18);
+}
+body[data-theme="light"] .hero-card,
+body[data-theme="light"] .phone,
+body[data-theme="light"] .ad-showcase,
+body[data-theme="light"] .ad-screen{
+  background:#FFFFFF;
+  border-color:rgba(17,24,39,.15);
+}
+body[data-theme="light"] .phone-screen{
+  background:linear-gradient(180deg, #F8FAFC, #EAF0F8);
+  border-color:rgba(17,24,39,.12);
+}
+body[data-theme="light"] .video,
+body[data-theme="light"] .ad-video-area{
+  background:linear-gradient(135deg, rgba(37,99,235,.20), rgba(246,200,95,.18)), radial-gradient(circle at 70% 35%, rgba(255,255,255,.60), transparent 17%), #E5ECF7;
+}
+body[data-theme="light"] .play{
+  background:rgba(17,24,39,.68);
+  border-color:rgba(17,24,39,.10);
+}
+body[data-theme="light"] .phone-mini,
+body[data-theme="light"] .ad-mini{
+  background:#FFFFFF;
+  border-color:rgba(17,24,39,.14);
+}
+body[data-theme="light"] .phone-mini b,
+body[data-theme="light"] .ad-mini b{
+  color:#111827!important;
+}
+body[data-theme="light"] .banner-ad,
+body[data-theme="light"] .ad-banner-strip{
+  color:#111827;
+  background:linear-gradient(90deg, rgba(246,200,95,.55), rgba(37,99,235,.15));
+  border-color:rgba(199,138,18,.36);
+}
+body[data-theme="light"] .progress,
+body[data-theme="light"] .ad-timebar{
+  background:rgba(17,24,39,.13);
+}
+body[data-theme="light"] .box-btn,
+body[data-theme="light"] .ad-preroll .badge{
+  background:#F6C85F;
+  color:#111827;
+}
+body[data-theme="light"] .ad-screen{
+  background:linear-gradient(180deg,#FFFFFF,#F1F5FB);
+}
+body[data-theme="light"] .ad-preroll,
+body[data-theme="light"] .platform-note,
+body[data-theme="light"] .modal-total,
+body[data-theme="light"] .unit-formula{
+  background:linear-gradient(135deg, rgba(246,200,95,.24), rgba(37,99,235,.09));
+  border-color:rgba(199,138,18,.25);
+  color:#243041;
+}
+body[data-theme="light"] .formula{
+  color:#263445;
+  background:#F8FAFC;
+  border-color:rgba(17,24,39,.12);
+}
+body[data-theme="light"] .modal{
+  background:#FFFFFF;
+}
+body[data-theme="light"] .close{
+  background:#F1F5F9;
+  color:#111827;
+  border-color:rgba(17,24,39,.16);
+}
+body[data-theme="light"] .brand-logo span,
+body[data-theme="light"] .platform-logo span{
+  background:linear-gradient(135deg,#111827,#334155);
+  color:#fff;
+}
+body[data-theme="light"] .asset-table code{
+  color:#9A5D00;
+}
+/* 미팅 화면에서 작은 텍스트도 잘 보이도록 크기 상향 */
+.card p,
+.brand-card p,
+.platform-card p,
+.compare-card ul,
+.section-desc{
+  font-size:14px;
+}
+.phone-mini span,
+.ad-mini span,
+.ad-stat .l{
+  font-size:12px;
+}
+.phone-mini b,
+.ad-mini b{
+  font-size:13px;
+}
+@media (max-width:980px){
+  .topbar-inner{align-items:flex-start; flex-direction:column;}
+  .theme-toggle{align-self:flex-start;}
+}
+
+
+/* ─────────────────────────────────────────
+   Light Mode Contrast Hotfix
+   화이트 모드에서 흰색으로 남는 텍스트를 강제 보정
+───────────────────────────────────────── */
+body[data-theme="light"] .growth-card .members,
+body[data-theme="light"] .growth-card .members small,
+body[data-theme="light"] .growth-list,
+body[data-theme="light"] .growth-list b,
+body[data-theme="light"] .flow-node b,
+body[data-theme="light"] .flow-node span,
+body[data-theme="light"] .unit-formula,
+body[data-theme="light"] .unit-formula b,
+body[data-theme="light"] .formula,
+body[data-theme="light"] table,
+body[data-theme="light"] th,
+body[data-theme="light"] td,
+body[data-theme="light"] td strong,
+body[data-theme="light"] .num,
+body[data-theme="light"] .source-box,
+body[data-theme="light"] .source-box b,
+body[data-theme="light"] .callout,
+body[data-theme="light"] .callout b,
+body[data-theme="light"] .logo-note,
+body[data-theme="light"] .platform-note,
+body[data-theme="light"] .mini-note{
+  color:#111827!important;
+  text-shadow:none!important;
+}
+body[data-theme="light"] .growth-list li{
+  border-top:1px solid rgba(17,24,39,.12)!important;
+}
+body[data-theme="light"] .growth-card .members{
+  color:#111827!important;
+}
+body[data-theme="light"] .growth-card .members small,
+body[data-theme="light"] .growth-list,
+body[data-theme="light"] .flow-node span,
+body[data-theme="light"] .mini-note,
+body[data-theme="light"] .logo-note{
+  color:#475467!important;
+}
+body[data-theme="light"] .month-badge{
+  color:#8A5200!important;
+  background:#FFF7E0!important;
+  border-color:#F4D58A!important;
+}
+body[data-theme="light"] .clickhint,
+body[data-theme="light"] .pill.gold,
+body[data-theme="light"] .callout b,
+body[data-theme="light"] .unit-formula b{
+  color:#B77910!important;
+}
+body[data-theme="light"] .pill{
+  color:#263445!important;
+  background:#F8FAFC!important;
+  border-color:rgba(17,24,39,.15)!important;
+}
+body[data-theme="light"] .pill.gold{
+  background:#FFF7E0!important;
+  border-color:#F4D58A!important;
+}
+body[data-theme="light"] table{
+  background:#FFFFFF!important;
+  border-color:rgba(17,24,39,.14)!important;
+}
+body[data-theme="light"] th{
+  background:#F1F5F9!important;
+  color:#334155!important;
+}
+body[data-theme="light"] td{
+  color:#334155!important;
+  border-bottom-color:rgba(17,24,39,.10)!important;
+}
+body[data-theme="light"] .num,
+body[data-theme="light"] td strong{
+  color:#111827!important;
+}
+body[data-theme="light"] .callout,
+body[data-theme="light"] .source-box,
+body[data-theme="light"] .platform-note{
+  background:linear-gradient(135deg, rgba(255,247,224,.94), rgba(239,246,255,.96))!important;
+  border-color:rgba(199,138,18,.28)!important;
+}
+body[data-theme="light"] .flow-node{
+  background:#FFFFFF!important;
+  border-color:rgba(17,24,39,.13)!important;
+}
+body[data-theme="light"] .asset-table code,
+body[data-theme="light"] code{
+  color:#B77910!important;
+  background:#FFF7E0;
+  border-radius:6px;
+  padding:1px 5px;
+}
+body[data-theme="light"] .section-kicker,
+body[data-theme="light"] .eyebrow{
+  color:#B77910!important;
+}
+
+
+/* ─────────────────────────────────────────
+   Mobile Header Optimization
+   - 데스크톱: 기존 헤더 유지
+   - 모바일: 로고/테마 1줄 + 탭 가로 스크롤 1줄
+   - 탭 줄바꿈 방지로 헤더 높이 최소화
+───────────────────────────────────────── */
+@media (max-width: 760px){
+  .topbar{
+    position: sticky;
+    top: 0;
+    z-index: 80;
+    padding: 0;
+  }
+
+  .topbar-inner{
+    width: 100%;
+    padding: 10px 14px 8px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand theme"
+      "tabs tabs";
+    gap: 9px 10px;
+    align-items: center;
+  }
+
+  .brand{
+    grid-area: brand;
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .brand-logo{
+    width: 34px;
+    height: 34px;
+    border-radius: 11px;
+    flex: 0 0 34px;
+  }
+
+  .brand-logo img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .brand-name{
+    font-size: 15px;
+    line-height: 1.05;
+    min-width: 0;
+  }
+
+  .brand-name small{
+    font-size: 10px;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .theme-toggle{
+    grid-area: theme;
+    padding: 8px 10px;
+    font-size: 0;
+    min-width: 42px;
+    height: 38px;
+    justify-content: center;
+  }
+
+  .theme-toggle .theme-icon{
+    font-size: 16px;
+  }
+
+  .theme-toggle .theme-label{
+    display: none;
+  }
+
+  .tabbar{
+    grid-area: tabs;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 7px;
+    padding: 0 0 3px;
+    margin: 0;
+    border-bottom: 0;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tabbar::-webkit-scrollbar{
+    display: none;
+  }
+
+  .tabbtn{
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    line-height: 1;
+    min-height: 34px;
+  }
+
+  .section{
+    padding-top: 22px;
+  }
+
+  .hero{
+    padding-top: 22px;
+  }
+
+  .hero-grid{
+    gap: 20px;
+  }
+
+  h1{
+    font-size: clamp(34px, 10vw, 46px);
+    line-height: 1.08;
+  }
+
+  .hero-lead{
+    font-size: 15.5px;
+    line-height: 1.75;
+  }
+}
+
+/* 더 작은 휴대폰에서는 헤더를 더 압축 */
+@media (max-width: 420px){
+  .topbar-inner{
+    padding: 8px 10px 7px;
+    gap: 7px;
+  }
+
+  .brand-logo{
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    flex-basis: 30px;
+  }
+
+  .brand-name{
+    font-size: 14px;
+  }
+
+  .brand-name small{
+    display: none;
+  }
+
+  .theme-toggle{
+    width: 38px;
+    min-width: 38px;
+    height: 34px;
+    padding: 7px;
+  }
+
+  .tabbtn{
+    padding: 7px 10px;
+    font-size: 11.5px;
+    min-height: 32px;
+  }
+
+  .hero{
+    padding-top: 18px;
+  }
+
+  h1{
+    font-size: clamp(31px, 10.5vw, 40px);
+  }
+}
+
+
+/* ─────────────────────────────────────────
+   Final Navigation Fix
+   - 데스크톱: 기존 가로 헤더 유지
+   - 모바일: 순서 변경 없이 1→2→3→4→5 가로 슬라이드
+   - 화살표 버튼 없음
+───────────────────────────────────────── */
+
+.external-links{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  flex:0 0 auto;
+}
+.external-links a{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.055);
+  color:#DCE6F5;
+  font-weight:800;
+  font-size:12.5px;
+  padding:9px 12px;
+  border-radius:999px;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:.18s ease;
+}
+.external-links a:hover{
+  background:rgba(255,255,255,.11);
+  transform:translateY(-1px);
+}
+body[data-theme="light"] .external-links a{
+  color:#263445;
+  background:#FFFFFF;
+  border-color:rgba(17,24,39,.15);
+}
+body[data-theme="light"] .external-links a:hover{background:#F1F5F9;}
+
+.theme-toggle{
+  min-width:96px!important;
+  height:38px!important;
+  padding:0 11px!important;
+  border-radius:999px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  flex:0 0 auto;
+}
+.toggle-track{
+  width:42px;
+  height:22px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  padding:2px;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.18);
+  transition:.18s ease;
+}
+.toggle-knob{
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg, var(--gold), #FFE8A5);
+  transform:translateX(0);
+  transition:.18s ease;
+  box-shadow:0 4px 12px rgba(0,0,0,.22);
+}
+.theme-icon{
+  font-size:11px;
+  line-height:1;
+}
+.theme-label{
+  display:inline!important;
+  font-size:12px!important;
+  font-weight:1000!important;
+}
+body[data-theme="light"] .toggle-knob{
+  transform:translateX(19px);
+  background:linear-gradient(135deg, #fff, #DDE7F7);
+}
+body[data-theme="light"] .toggle-track{
+  background:rgba(255,255,255,.18);
+  border-color:rgba(255,255,255,.24);
+}
+
+/* 데스크톱은 원래처럼 전체 탭 노출 */
+@media (min-width:701px){
+  .topbar-inner{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    flex-direction:row!important;
+    gap:14px!important;
+  }
+  .brand{flex:0 0 auto;}
+  .tabbar{
+    display:flex!important;
+    flex-wrap:nowrap!important;
+    justify-content:flex-end!important;
+    gap:7px!important;
+    overflow:visible!important;
+    flex:1 1 auto;
+    min-width:0;
+  }
+  .tabbtn{
+    flex:0 0 auto!important;
+    white-space:nowrap!important;
+  }
+}
+
+/* 모바일만 자연스러운 가로 슬라이드 탭 */
+@media (max-width:700px){
+  .topbar{
+    position:sticky;
+    top:0;
+    z-index:80;
+    padding:0!important;
+  }
+  .topbar-inner{
+    width:100%!important;
+    padding:9px 12px 10px!important;
+    display:grid!important;
+    grid-template-columns:1fr auto auto!important;
+    grid-template-areas:
+      "brand links theme"
+      "tabs tabs tabs"!important;
+    gap:8px!important;
+    align-items:center!important;
+  }
+  .brand{
+    grid-area:brand!important;
+    min-width:0!important;
+    gap:8px!important;
+  }
+  .brand-mark{
+    width:32px!important;
+    height:32px!important;
+    flex:0 0 32px!important;
+    border-radius:10px!important;
+  }
+  .brand-name{
+    font-size:14px!important;
+    line-height:1.05!important;
+  }
+  .brand-name small{display:none!important;}
+
+  .external-links{
+    grid-area:links!important;
+    gap:5px!important;
+  }
+  .external-links a{
+    height:32px!important;
+    padding:0 9px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    font-size:11.5px!important;
+  }
+
+  .theme-toggle{
+    grid-area:theme!important;
+    min-width:76px!important;
+    height:32px!important;
+    padding:0 8px!important;
+    gap:5px!important;
+  }
+  .toggle-track{
+    width:34px!important;
+    height:18px!important;
+    padding:1px!important;
+  }
+  .toggle-knob{
+    width:16px!important;
+    height:16px!important;
+  }
+  body[data-theme="light"] .toggle-knob{
+    transform:translateX(16px)!important;
+  }
+  .theme-label{
+    font-size:11px!important;
+  }
+  .theme-icon{
+    font-size:10px!important;
+  }
+
+  .tabbar{
+    grid-area:tabs!important;
+    width:100%!important;
+    display:flex!important;
+    flex-wrap:nowrap!important;
+    justify-content:flex-start!important;
+    gap:7px!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    scroll-behavior:smooth!important;
+    -webkit-overflow-scrolling:touch!important;
+    scrollbar-width:none!important;
+    padding:0 0 2px!important;
+    margin:0!important;
+    border:0!important;
+  }
+  .tabbar::-webkit-scrollbar{display:none!important;}
+  .tabbtn{
+    flex:0 0 auto!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    white-space:nowrap!important;
+    min-height:34px!important;
+    height:34px!important;
+    padding:0 12px!important;
+    border-radius:999px!important;
+    font-size:12.5px!important;
+  }
+}
+
+@media (max-width:390px){
+  .topbar-inner{
+    padding-left:9px!important;
+    padding-right:9px!important;
+  }
+  .external-links a{
+    padding:0 7px!important;
+    font-size:11px!important;
+  }
+  .theme-toggle{
+    min-width:70px!important;
+  }
+  .theme-label{
+    font-size:10.5px!important;
+  }
+  .tabbtn{
+    font-size:12px!important;
+    padding:0 10px!important;
+  }
+}
+
+</style>
+</head>
+<body data-theme="dark">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark"><img src="assets/viewster.png?v=2" alt="뷰스터 로고" onerror="fallbackLogo(this)"><span style="display:none">V</span></div>
+      <div class="brand-name">VIEWSTER<small>Revenue Model & Vision</small></div>
+    </div>
+    <nav class="tabbar" aria-label="문서 탭">
+      <button class="tabbtn on" onclick="showTab('t-summary',this)">✨ 핵심 요약</button>
+      <button class="tabbtn" onclick="showTab('t-revenue',this)">💰 수익 구조</button>
+      <button class="tabbtn" onclick="showTab('t-ad',this)">📣 광고 효과</button>
+      <button class="tabbtn" onclick="showTab('t-growth',this)">🚀 성장 시뮬레이션</button>
+      <button class="tabbtn" onclick="showTab('t-market',this)">🌐 시장 · 확장</button>
+    </nav>    <div class="external-links" aria-label="뷰스터 주요 링크">
+      <a href="https://viewster.io" target="_blank" rel="noopener">뷰스터</a>
+      <a href="https://viewster.co.kr" target="_blank" rel="noopener">광고주</a>
+    </div>
+    <button class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="다크/라이트 모드 전환">
+      <span class="toggle-track"><span class="toggle-knob"><span class="theme-icon">🌙</span></span></span>
+      <span class="theme-label">Dark</span>
+    </button>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero" id="heroIntro">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Viewster Vision Deck · HTML Meeting Edition</div>
+        <h1><span class="gradient-text">보고 싶은 영상</span>을 보는 시간이<br/>수익이 되는 플랫폼</h1>
+        <p class="hero-lead">뷰스터는 유튜브 시청, 랜덤박스 보상, 광고 노출, 크리에이터 후원을 하나의 수익 루프로 연결합니다. 기존 리워드앱의 빠른 유입 장점은 유지하고, 광고 피로감과 낮은 체류 시간 문제는 영상 시청 경험으로 보강합니다.</p>
+        <div class="hero-actions">
+          <div class="hero-pill"><b>10분</b> 배너 노출</div>
+          <div class="hero-pill"><b>보상 직전</b> 프리롤</div>
+          <div class="hero-pill"><b>3대</b> 수익모델</div>
+          <div class="hero-pill"><b>YouTube → Multi Video</b></div>
+        </div>
+      </div>
+      <div class="hero-card glass">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="video"><div class="play" aria-label="play"></div></div>
+            <div class="banner-ad"><span>10분 배너 노출</span><span>AD</span></div>
+            <div class="reward-row">
+              <div class="progress"><span></span></div>
+              <div class="box-btn">랜덤박스 받기</div>
+            </div>
+            <div class="phone-cards">
+              <div class="phone-mini"><b>광고주</b><span>낮은 단가 + 각인 효과</span></div>
+              <div class="phone-mini"><b>사용자</b><span>보고 싶은 영상 + 보상</span></div>
+              <div class="phone-mini"><b>크리에이터</b><span>후원/선물 수익화</span></div>
+              <div class="phone-mini"><b>뷰스터</b><span>복합 수익 구조</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="t-summary" class="tabpanel">
+      <div class="section-head">
+        <div><div class="kicker">01 · Core Thesis</div><h2>뷰스터의 핵심은 “시청 시간의 수익화”입니다</h2></div>
+        <div class="section-desc">사용자가 이미 소비하고 있는 영상 시청 시간을 광고, 보상, 후원, 랜덤박스 선물 구조로 연결합니다.</div>
+      </div>
+      <div class="grid3">
+        <div class="card"><div class="card-icon">🎬</div><h3>사용자</h3><p>억지 광고 시청이 아니라, 보고 싶은 유튜브 영상을 보면서 랜덤박스 보상을 받습니다.</p></div>
+        <div class="card"><div class="card-icon">📣</div><h3>광고주</h3><p>영상 시청을 방해하지 않고 10분 배너 노출과 보상 직전 프리롤로 브랜드를 각인시킵니다.</p></div>
+        <div class="card"><div class="card-icon">💝</div><h3>크리에이터</h3><p>후원, 홍보, 랜덤박스 선물, 미션 기능을 통해 새로운 수익 기회를 확보합니다.</p></div>
+      </div>
+
+      <div class="section-head">
+        <div><div class="kicker">Value Loop</div><h2>뷰스터 경제 루프</h2></div>
+      </div>
+      <div class="flow">
+        <div class="flow-node"><div class="emoji">▶️</div><b>영상 시청</b><span>사용자가 원하는 콘텐츠 선택</span></div>
+        <div class="flow-node"><div class="emoji">🪧</div><b>10분 배너</b><span>시청 방해 없는 광고 노출</span></div>
+        <div class="flow-node"><div class="emoji">🎁</div><b>보상 직전 프리롤</b><span>보상 목적 기반 집중 노출</span></div>
+        <div class="flow-node"><div class="emoji">🧧</div><b>랜덤박스 지급</b><span>반복 방문 동기</span></div>
+        <div class="flow-node"><div class="emoji">📈</div><b>수익 확장</b><span>광고·후원·선물 수익</span></div>
+      </div>
+
+      <div class="section-head">
+        <div><div class="kicker">Positioning</div><h2>리워드앱의 장점은 유지하고 단점은 보강</h2></div>
+      </div>
+      <div class="compare">
+        <div class="card"><h3>기존 리워드앱의 장점</h3><ul class="list"><li>보상이 명확해 초기 유입이 빠름</li><li>소액 리워드라도 반복 참여를 유도</li><li>포인트·랜덤 보상으로 즉각적인 동기 부여</li><li>광고주 입장에서는 참여형 광고 집행 가능</li></ul></div>
+        <div class="compare-mid">→</div>
+        <div class="card"><h3>뷰스터의 보강점</h3><ul class="list"><li>사용자가 보고 싶은 영상을 직접 선택</li><li>광고가 영상 시청을 직접 방해하지 않음</li><li>10분 시청 구조로 체류 시간 확보</li><li>배너 + 프리롤로 광고 각인 강화</li></ul></div>
+      </div>
+    </section>
+
+    <section id="t-revenue" class="tabpanel" hidden>
+      <div class="section-head">
+        <div><div class="kicker">02 · Revenue Model</div><h2>뷰스터는 3개의 수익 축을 가집니다</h2></div>
+        <div class="section-desc">광고 수익을 기본으로, 후원 수수료와 랜덤박스 선물 판매 수익이 결합되는 복합 수익 구조입니다.</div>
+      </div>
+      <div class="grid3">
+        <div class="card clickable-card" onclick="openUnitRevenue()" tabindex="0" role="button" onkeypress="handleUnitKey(event)"><div class="card-icon">📢</div><h3>광고 수익 1회</h3><div class="big-num gold">21원</div><div class="metric-label">광고 1회 기준 회사 수익</div><p style="margin-top:12px;">최고 보너스 40%를 적용한 보수 기준. 보너스가 낮을수록 회사 수익률은 더 커질 수 있습니다.</p><div class="card-hint">계산 구조 크게 보기 →</div></div>
+        <div class="card"><div class="card-icon">💌</div><h3>후원 수익</h3><div class="big-num gold">10%</div><div class="metric-label">후원/홍보 결제 수수료</div><p style="margin-top:12px;">시청자가 크리에이터에게 후원하거나 홍보할 때 결제 금액의 10%를 회사 수익으로 설정합니다.</p></div>
+        <div class="card"><div class="card-icon">🎁</div><h3>랜덤박스 선물 1개</h3><div class="big-num gold">20원</div><div class="metric-label">랜덤박스 1개 기준 회사 수익</div><p style="margin-top:12px;">100개 7,000원 판매, 개당 판매가 70원, 개당 보상 적용 50원 기준. 랜덤박스 1개당 회사 수익 20원입니다.</p></div>
+      </div>
+
+      <div class="section-head">
+        <div><div class="kicker">AD Unit Economics</div><h2>광고 수익 1회 기준 계산</h2></div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <h3>광고주 500만 원 충전 기준</h3>
+          <table>
+            <tr><th>항목</th><th class="num">금액/수량</th></tr>
+            <tr><td>실제 충전금액</td><td class="num">5,000,000원</td></tr>
+            <tr><td>최고 보너스 40%</td><td class="num">+2,000,000AD</td></tr>
+            <tr><td>총 사용 가능 AD</td><td class="num">7,000,000AD</td></tr>
+            <tr><td>광고 1회 차감</td><td class="num">100AD</td></tr>
+            <tr><td><strong>가능 광고 노출</strong></td><td class="num"><strong>70,000회</strong></td></tr>
+            <tr><td><strong>광고주 실질 단가</strong></td><td class="num"><strong>약 71.4원</strong></td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <h3>1회 광고 성립 구조</h3>
+          <div class="grid3" style="grid-template-columns:1fr; gap:10px;">
+            <div class="callout"><b>광고주 실질 광고비</b><br/>약 71.4원 / 회</div>
+            <div class="callout"><b>사용자 보상 지급</b><br/>약 50원 / 회</div>
+            <div class="callout"><b>회사 광고 수익</b><br/>약 21.4원 / 회</div>
+          </div>
+          <div class="formula">회사 수익 = 광고주 실질 단가 71.4원 − 사용자 보상 50원 = 약 21.4원</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="t-ad" class="tabpanel" hidden>
+      <div class="section-head">
+        <div><div class="kicker">03 · Ad Effect</div><h2>광고를 방해가 아니라 “각인 경험”으로 바꿉니다</h2></div>
+        <div class="section-desc">뷰스터 광고는 시청 중간을 끊는 방식이 아니라, 10분 배너 노출과 보상 직전 프리롤을 결합해 자연스럽게 브랜드를 기억하게 만듭니다.</div>
+      </div>
+
+      <div class="ad-hero">
+        <div class="ad-showcase glass">
+          <div class="ad-screen">
+            <div class="ad-video-area">
+              <div class="play" aria-label="play"></div>
+              <div class="ad-banner-strip"><span>브랜드 배너 10분 노출</span><span>AD</span></div>
+            </div>
+            <div class="ad-timeline-ui">
+              <div class="ad-timebar"><span></span></div>
+              <div class="ad-mini-grid">
+                <div class="ad-mini"><b>0분</b><span>영상 시청 시작</span></div>
+                <div class="ad-mini"><b>10분</b><span>배너 반복 각인</span></div>
+                <div class="ad-mini"><b>보상 직전</b><span>프리롤 집중 노출</span></div>
+              </div>
+              <div class="ad-preroll"><div><b>보상 받기 전 프리롤</b><br><span>사용자가 보상을 받기 위해 집중하는 순간에 한 번 더 노출</span></div><div class="badge">완료 기준 과금</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="ad-story card">
+          <div>
+            <span class="pill gold">VIEWSTER AD STRUCTURE</span>
+            <h3>영상은 그대로,<br>광고는 오래 남게</h3>
+            <p>일반 광고는 사용자가 보던 영상을 끊어 거부감을 만들 수 있습니다. 뷰스터는 사용자가 선택한 영상을 유지하면서 배너를 장시간 노출하고, 보상을 받는 순간 프리롤로 한 번 더 각인합니다.</p>
+          </div>
+          <div class="ad-stat-grid">
+            <div class="ad-stat"><div class="v">10분</div><div class="l">배너 지속 노출</div></div>
+            <div class="ad-stat"><div class="v">1회</div><div class="l">보상 직전 프리롤</div></div>
+            <div class="ad-stat"><div class="v">완료</div><div class="l">광고 성립 기준 과금</div></div>
+          </div>
+          <div class="formula">핵심 구조: 시청 유지 → 10분 배너 각인 → 보상 직전 프리롤 → 랜덤박스 지급</div>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div><div class="kicker">Exposure Timeline</div><h2>광고 노출 흐름</h2></div>
+      </div>
+      <div class="flow">
+        <div class="flow-node"><div class="emoji">🎬</div><b>영상 시작</b><span>사용자가 원하는 영상 시청</span></div>
+        <div class="flow-node"><div class="emoji">🪧</div><b>배너 노출</b><span>영상 하단 10분 노출</span></div>
+        <div class="flow-node"><div class="emoji">🧠</div><b>브랜드 각인</b><span>장시간 반복 인지</span></div>
+        <div class="flow-node"><div class="emoji">🎁</div><b>보상 받기</b><span>프리롤 집중 시청</span></div>
+        <div class="flow-node"><div class="emoji">✅</div><b>완료 과금</b><span>광고 완료 기준 차감</span></div>
+      </div>
+
+      <div class="ad-compare-grid">
+        <div class="compare-card weak">
+          <h3>일반 영상 광고의 한계</h3>
+          <ul>
+            <li>사용자가 보고 있던 콘텐츠 흐름을 중간에 끊음</li>
+            <li>스킵, 닫기, 무시 등 광고 회피 행동이 발생하기 쉬움</li>
+            <li>짧은 노출로 브랜드 각인 시간이 부족할 수 있음</li>
+            <li>광고가 “방해 요소”로 인식될 가능성이 있음</li>
+          </ul>
+        </div>
+        <div class="compare-card strong">
+          <h3>뷰스터 광고의 차별점</h3>
+          <ul>
+            <li>사용자가 선택한 영상 시청을 직접 방해하지 않음</li>
+            <li>10분 배너 노출로 브랜드 이름과 메시지를 반복 각인</li>
+            <li>보상 직전 프리롤로 집중도가 높은 순간에 추가 노출</li>
+            <li>완료 기준 과금으로 광고주가 납득하기 쉬운 성과 구조</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div><div class="kicker">Why It Works</div><h2>광고주가 얻는 4가지 효과</h2></div>
+      </div>
+      <div class="ad-wide-metric">
+        <div class="card"><div class="card-icon">😌</div><h3>거부감 감소</h3><p>시청 중간을 끊지 않아 광고 피로감을 줄이고 자연스럽게 노출됩니다.</p></div>
+        <div class="card"><div class="card-icon">⏱️</div><h3>장시간 각인</h3><p>10분 동안 배너가 유지되어 브랜드명, 혜택, 메시지가 반복 인지됩니다.</p></div>
+        <div class="card"><div class="card-icon">🎯</div><h3>보상 집중도</h3><p>보상을 받기 직전의 집중 구간에서 프리롤 광고를 한 번 더 노출합니다.</p></div>
+        <div class="card"><div class="card-icon">💸</div><h3>낮은 실질 단가</h3><p>최고 보너스 기준 실질 광고 단가 약 71원으로 배너와 프리롤을 함께 제공합니다.</p></div>
+      </div>
+    </section>
+
+    <section id="t-growth" class="tabpanel" hidden>
+      <div class="section-head">
+        <div><div class="kicker">04 · Growth Simulation</div><h2>런칭 후 회원 성장과 예상 수익</h2></div>
+        <div class="section-desc">각 월별 카드를 클릭하면 광고 수익, 예상 후원 수익, 랜덤박스 선물 수익이 팝업으로 표시됩니다.</div>
+      </div>
+      <div class="timeline">
+        <div class="growth-card" onclick="openScenario('m1')" tabindex="0" role="button" onkeypress="handleCardKey(event,'m1')">
+          <span class="month-badge">런칭 후 1개월</span>
+          <h3>초기 유입 검증</h3>
+          <div class="members">1만<small> 명</small></div>
+          <ul class="growth-list"><li><span>기준 일 참여율</span><b>20%</b></li><li><span>일 리워드 참여자</span><b>2,000명</b></li><li><span>일 광고 노출</span><b>20,000회</b></li></ul>
+          <div class="clickhint">클릭하면 예상 수익 보기 →</div>
+        </div>
+        <div class="growth-card" onclick="openScenario('m2')" tabindex="0" role="button" onkeypress="handleCardKey(event,'m2')">
+          <span class="month-badge">런칭 후 2개월</span>
+          <h3>활성 유저 확대</h3>
+          <div class="members">10만<small> 명</small></div>
+          <ul class="growth-list"><li><span>기준 일 참여율</span><b>20%</b></li><li><span>일 리워드 참여자</span><b>20,000명</b></li><li><span>일 광고 노출</span><b>200,000회</b></li></ul>
+          <div class="clickhint">클릭하면 예상 수익 보기 →</div>
+        </div>
+        <div class="growth-card" onclick="openScenario('m3')" tabindex="0" role="button" onkeypress="handleCardKey(event,'m3')">
+          <span class="month-badge">런칭 후 3개월</span>
+          <h3>리워드 플랫폼 확장</h3>
+          <div class="members">50만<small> 명</small></div>
+          <ul class="growth-list"><li><span>기준 일 참여율</span><b>20%</b></li><li><span>일 리워드 참여자</span><b>100,000명</b></li><li><span>일 광고 노출</span><b>1,000,000회</b></li></ul>
+          <div class="clickhint">클릭하면 예상 수익 보기 →</div>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div><div class="kicker">Key Question</div><h2>1일 리워드 참여자 1만 명을 만들려면?</h2></div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <table>
+            <tr><th>일 리워드 참여율</th><th class="num">필요 전체 회원수</th></tr>
+            <tr><td>50%</td><td class="num">약 2만 명</td></tr>
+            <tr><td>30%</td><td class="num">약 3.3만 명</td></tr>
+            <tr><td>20%</td><td class="num">약 5만 명</td></tr>
+            <tr><td><strong>10%</strong></td><td class="num"><strong>약 10만 명</strong></td></tr>
+            <tr><td>5%</td><td class="num">약 20만 명</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <h3>자료용 추천 표현</h3>
+          <div class="callout"><b>성장 시뮬레이션 기준</b><br/>이번 미팅 자료에서는 초기 리워드 유입이 강하다는 가정으로 전 구간 일 참여율 20%를 적용합니다. 전체 회원 5만 명 중 20%가 매일 리워드에 참여하면, 1일 리워드 참여자 1만 명과 1일 광고 노출 10만 회를 만들 수 있습니다.</div>
+          <div class="formula">회원수 × 일 참여율 × 1인당 1일 리워드 10회 = 일 광고 노출 수</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="t-market" class="tabpanel" hidden>
+      <div class="section-head">
+        <div><div class="kicker">05 · Market Expansion</div><h2>리워드는 이미 대형 플랫폼의 체류 전략입니다</h2></div>
+        <div class="section-desc"></div>
+      </div>
+      <div class="market-grid">
+        <div class="brand-card"><div class="brand-top"><div class="brand-logo"><img src="assets/toss.png?v=2" alt="토스" onerror="fallbackLogo(this)"><span style="display:none">TOSS</span></div><h3>토스</h3></div><p>만보기, 랜덤 포인트, 광고 참여형 포인트 등 금융 앱 안에서 리워드 체류 구조를 강화.</p></div>
+        <div class="brand-card"><div class="brand-top"><div class="brand-logo"><img src="assets/cashwalk.png?v=2" alt="캐시워크" onerror="fallbackLogo(this)"><span style="display:none">CASH<br>WALK</span></div><h3>캐시워크</h3></div><p>걷기 기반 리워드앱의 대표 사례. 건강 행동과 포인트 보상을 결합.</p></div>
+        <div class="brand-card"><div class="brand-top"><div class="brand-logo"><img src="assets/daangn.png?v=2" alt="당근" onerror="fallbackLogo(this)"><span style="display:none">당근</span></div><h3>당근 / 당근페이</h3></div><p>지역 기반 서비스에 포인트, 뽑기, 제휴 미션을 결합해 재방문 동기를 강화.</p></div>
+        <div class="brand-card"><div class="brand-top"><div class="brand-logo"><img src="assets/naverpay.png?v=2" alt="네이버페이" onerror="fallbackLogo(this)"><span style="display:none">NAVER<br>PAY</span></div><h3>네이버페이</h3></div><p>결제, 쇼핑, 이벤트 포인트를 통해 사용자 행동과 혜택을 연결.</p></div>
+        <div class="brand-card"><div class="brand-top"><div class="brand-logo"><img src="assets/kakaobank.png?v=2" alt="카카오뱅크" onerror="fallbackLogo(this)"><span style="display:none">KAKAO<br>BANK</span></div><h3>카카오뱅크</h3></div><p>퀴즈, 걷기, 미션형 앱테크로 금융 앱 체류와 충성도를 강화.</p></div>
+        <div class="brand-card"><div class="brand-top"><div class="brand-logo"><img src="assets/boosters.png?v=2" alt="Viewster" onerror="fallbackLogo(this)"><span style="display:none">VIEW<br>STER</span></div><h3>VIEWSTER</h3></div><p>다음 리워드 시장의 포인트를 영상 시청 시간, 광고 각인, 크리에이터 수익화로 확장.</p></div>
+      </div>
+
+      <div class="section-head">
+        <div><div class="kicker">Video Network Vision</div><h2>YouTube를 시작으로 영상 플랫폼 전체로 확장</h2></div>
+        <div class="section-desc"></div>
+      </div>
+      <div class="platform-grid">
+        <div class="platform-card"><div class="platform-logo"><img src="assets/youtube.png?v=2" alt="YouTube" onerror="fallbackLogo(this)"><span style="display:none">You<br>Tube</span></div><h3>YouTube</h3><p>초기 핵심 플랫폼<br>시청 리워드 시작점</p></div>
+        <div class="platform-card"><div class="platform-logo"><img src="assets/tiktok.png?v=2" alt="TikTok" onerror="fallbackLogo(this)"><span style="display:none">Tik<br>Tok</span></div><h3>TikTok</h3><p>숏폼 시청 시간<br>리워드 확장 후보</p></div>
+        <div class="platform-card"><div class="platform-logo"><img src="assets/soop.png?v=2" alt="SOOP" onerror="fallbackLogo(this)"><span style="display:none">SOOP</span></div><h3>SOOP</h3><p>라이브 방송<br>후원·미션 확장</p></div>
+        <div class="platform-card"><div class="platform-logo"><img src="assets/chzzk.png?v=2" alt="CHZZK" onerror="fallbackLogo(this)"><span style="display:none">CHZZK</span></div><h3>CHZZK</h3><p>라이브 스트리밍<br>크리에이터 수익화</p></div>
+      </div>
+      <div class="platform-note"><b>확장 방향</b> — 유튜브에서 검증한 “영상 시청 시간 → 광고 노출 → 리워드 → 후원/선물” 구조를 숏폼과 라이브 플랫폼으로 넓혀, 영상 소비 시간 전체를 수익화하는 리워드 네트워크로 발전시킵니다.</div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Viewster Revenue Model & Vision · HTML meeting document · 기준 수치는 내부 가정 기반이며 광고 집행률, DAU, 리워드 참여율, 후원/선물 구매율에 따라 달라질 수 있습니다.
+  </footer>
+</div>
+
+
+<div class="modal-backdrop" id="unitRevenueModal" onclick="unitBackdropClose(event)">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="unitModalTitle">
+    <div class="modal-header">
+      <div>
+        <h3 id="unitModalTitle">광고 수익 1회 구조</h3>
+        <div class="modal-sub">최고 보너스 40% 적용 기준 · 광고 1회가 성립될 때 회사에 남는 금액</div>
+      </div>
+      <button class="close" onclick="closeUnitRevenue()" aria-label="닫기">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="unit-hero">
+        <div class="unit-box"><div class="label">광고주 실질 광고비</div><div class="value">71.4원</div></div>
+        <div class="unit-box"><div class="label">유저 리워드 지급</div><div class="value">50원</div></div>
+        <div class="unit-box"><div class="label">회사 광고 수익</div><div class="value gold">21.4원</div></div>
+      </div>
+      <div class="unit-formula">
+        <b>광고 1회 수익 = 광고주 실질 단가 71.4원 − 유저 지급 50원 = 약 21.4원</b><br/>
+        자료에서는 한눈에 보이도록 <b>광고 수익 1회 약 21원</b>으로 표시합니다.
+      </div>
+      <div class="grid2" style="margin-top:16px;">
+        <div class="card"><h3>왜 71.4원인가?</h3><p>광고주가 500만 원을 충전하고 최고 보너스 40%를 적용받으면 총 700만 AD를 사용할 수 있습니다. 광고 1회 차감이 100AD이므로 70,000회 광고 노출이 가능하고, 500만 원 ÷ 70,000회 = 약 71.4원입니다.</p></div>
+        <div class="card"><h3>왜 보수 기준인가?</h3><p>가장 큰 보너스 40%를 적용한 광고주 기준으로 계산했기 때문입니다. 보너스가 없거나 낮은 구간의 광고주는 실질 단가가 올라가며, 회사 수익률도 더 커질 수 있습니다.</p></div>
+      </div>
+      <div class="formula">500만 원 ÷ 70,000회 = 71.4원 / 회 → 71.4원 − 50원 = 21.4원 / 회</div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="scenarioModal" onclick="backdropClose(event)">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <div>
+        <h3 id="modalTitle">예상 수익</h3>
+        <div class="modal-sub" id="modalSub">성장 시뮬레이션</div>
+      </div>
+      <button class="close" onclick="closeScenario()" aria-label="닫기">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-metrics">
+        <div class="modal-metric"><div class="v" id="mMembers">-</div><div class="l">전체 회원수</div></div>
+        <div class="modal-metric"><div class="v" id="mActive">-</div><div class="l">일 리워드 참여자</div></div>
+        <div class="modal-metric"><div class="v" id="mAds">-</div><div class="l">1일 광고 노출</div></div>
+        <div class="modal-metric"><div class="v" id="mRate">-</div><div class="l">일 참여율</div></div>
+      </div>
+      <div class="grid3">
+        <div class="card"><div class="card-icon">📢</div><h3>광고 수익</h3><div class="big-num gold" id="mAdProfit">-</div><div class="metric-label">월 회사 광고 수익</div><p id="mAdDesc">-</p></div>
+        <div class="card"><div class="card-icon">💌</div><h3>예상 후원 수익</h3><div class="big-num gold" id="mDonationProfit">-</div><div class="metric-label">월 후원/홍보 수수료</div><p>가정: 전체 회원의 2%가 월 1회, 평균 10,000원 후원/홍보 결제. 회사 수수료 10%.</p></div>
+        <div class="card"><div class="card-icon">🎁</div><h3>예상 랜덤박스 수익</h3><div class="big-num gold" id="mBoxProfit">-</div><div class="metric-label">월 랜덤박스 선물 수익</div><p>가정: 전체 회원의 1%가 월 1회, 랜덤박스 100개 세트 구매. 세트당 회사 수익 2,000원.</p></div>
+      </div>
+      <div class="modal-total">
+        <div><b>월 예상 회사 수익 합계</b><div class="mini-note">광고 수익 + 후원 수수료 + 랜덤박스 선물 수익 기준</div></div>
+        <div class="v" id="mTotal">-</div>
+      </div>
+      <div class="formula" id="mFormula">-</div>
+      <div class="mini-note">주의: 광고 수익은 광고주 물량이 충분히 판매되고, 리워드 횟수가 모두 광고 성립으로 연결된다는 전제입니다. 후원/랜덤박스 수익은 초기 보수 가정이며 실제 구매율에 따라 크게 달라질 수 있습니다.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  function applyTheme(theme){
+    document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('viewsterTheme', theme);
+    const icon = document.querySelector('.theme-icon');
+    const label = document.querySelector('.theme-label');
+    if(icon) icon.textContent = theme === 'light' ? '☀️' : '🌙';
+    if(label) label.textContent = theme === 'light' ? 'Light' : 'Dark';
+  }
+  function toggleTheme(){
+    const now = document.body.getAttribute('data-theme') || 'dark';
+    applyTheme(now === 'dark' ? 'light' : 'dark');
+  }
+  applyTheme(localStorage.getItem('viewsterTheme') || 'dark');
+
+
+  function keepActiveTabVisible(){
+    const active = document.querySelector('.tabbtn.on');
+    const bar = document.querySelector('.tabbar');
+    if(active && bar && window.matchMedia('(max-width:700px)').matches){
+      active.scrollIntoView({behavior:'smooth', block:'nearest', inline:'nearest'});
+    }
+  }
+
+  const scenarios = {
+    m1: {title:'런칭 후 1개월 · 회원 1만 명', sub:'초기 유입 검증 단계 — 일 참여율 20% 기준', members:10000, activeRate:0.20},
+    m2: {title:'런칭 후 2개월 · 회원 10만 명', sub:'활성 유저 확대 단계 — 일 참여율 20% 기준', members:100000, activeRate:0.20},
+    m3: {title:'런칭 후 3개월 · 회원 50만 명', sub:'리워드 플랫폼 확장 단계 — 일 참여율 20% 기준', members:500000, activeRate:0.20}
+  };
+  const REWARDS_PER_ACTIVE_PER_DAY = 10;
+  const ADVERTISER_COST_PER_AD = 5000000 / 70000; // 71.428...
+  const USER_REWARD_PER_AD = 50;
+  const COMPANY_PROFIT_PER_AD = ADVERTISER_COST_PER_AD - USER_REWARD_PER_AD; // 21.428...
+  const DAYS = 30;
+  const DONATION_BUYER_RATE = 0.02;
+  const DONATION_AVG_AMOUNT = 10000;
+  const DONATION_FEE_RATE = 0.10;
+  const BOX_BUYER_RATE = 0.01;
+  const BOX_PROFIT_PER_SET = 2000;
+
+  function krw(n){
+    if(n >= 100000000){ return '약 ' + (n/100000000).toFixed(n>=1000000000?1:2).replace(/\.00$/,'') + '억 원'; }
+    if(n >= 10000){ return '약 ' + Math.round(n/10000).toLocaleString('ko-KR') + '만 원'; }
+    return '약 ' + Math.round(n).toLocaleString('ko-KR') + '원';
+  }
+  function count(n){ return Math.round(n).toLocaleString('ko-KR'); }
+  function showTab(id, btn){
+    document.querySelectorAll('.tabpanel').forEach(p=>p.hidden=(p.id!==id));
+    const hero = document.getElementById('heroIntro');
+    if(hero) hero.hidden = (id !== 't-summary');
+    document.querySelectorAll('.tabbtn').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    keepActiveTabVisible();
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  function openUnitRevenue(){
+    document.getElementById('unitRevenueModal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeUnitRevenue(){
+    document.getElementById('unitRevenueModal').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  function unitBackdropClose(e){ if(e.target.id === 'unitRevenueModal') closeUnitRevenue(); }
+  function handleUnitKey(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openUnitRevenue(); } }
+  function openScenario(key){
+    const s = scenarios[key];
+    const active = s.members * s.activeRate;
+    const dailyAds = active * REWARDS_PER_ACTIVE_PER_DAY;
+    const monthlyAds = dailyAds * DAYS;
+    const monthlyAdRevenue = monthlyAds * ADVERTISER_COST_PER_AD;
+    const monthlyUserPayout = monthlyAds * USER_REWARD_PER_AD;
+    const monthlyAdProfit = monthlyAds * COMPANY_PROFIT_PER_AD;
+    const donationProfit = s.members * DONATION_BUYER_RATE * DONATION_AVG_AMOUNT * DONATION_FEE_RATE;
+    const boxProfit = s.members * BOX_BUYER_RATE * BOX_PROFIT_PER_SET;
+    const total = monthlyAdProfit + donationProfit + boxProfit;
+
+    document.getElementById('modalTitle').textContent = s.title;
+    document.getElementById('modalSub').textContent = s.sub;
+    document.getElementById('mMembers').textContent = count(s.members) + '명';
+    document.getElementById('mActive').textContent = count(active) + '명';
+    document.getElementById('mAds').textContent = count(dailyAds) + '회';
+    document.getElementById('mRate').textContent = Math.round(s.activeRate*100) + '%';
+    document.getElementById('mAdProfit').textContent = krw(monthlyAdProfit);
+    document.getElementById('mDonationProfit').textContent = krw(donationProfit);
+    document.getElementById('mBoxProfit').textContent = krw(boxProfit);
+    document.getElementById('mTotal').textContent = krw(total);
+    document.getElementById('mAdDesc').textContent = '월 광고주 결제 기준 매출 ' + krw(monthlyAdRevenue) + ', 유저 보상 지급 ' + krw(monthlyUserPayout) + ' 차감 후 회사 수익 기준입니다.';
+    document.getElementById('mFormula').textContent = '계산식: ' + count(s.members) + '명 × 일 참여율 ' + Math.round(s.activeRate*100) + '% × 1일 리워드 ' + REWARDS_PER_ACTIVE_PER_DAY + '회 × 30일 × 광고 1회 회사수익 ' + COMPANY_PROFIT_PER_AD.toFixed(1) + '원 = ' + krw(monthlyAdProfit);
+    document.getElementById('scenarioModal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeScenario(){
+    document.getElementById('scenarioModal').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  function backdropClose(e){ if(e.target.id === 'scenarioModal') closeScenario(); }
+  function handleCardKey(e,key){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openScenario(key); } }
+  function fallbackLogo(img){
+    img.style.display='none';
+    const fallback = img.nextElementSibling;
+    if(fallback) fallback.style.display='grid';
+  }
+  document.addEventListener('keydown', e=>{ if(e.key === 'Escape') { closeScenario(); closeUnitRevenue(); } });
+</script>
+</body>
+</html>
