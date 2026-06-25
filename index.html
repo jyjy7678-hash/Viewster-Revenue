@@ -1541,7 +1541,7 @@ body[data-theme="light"] .toggle-track{
     document.querySelectorAll('.tabbtn').forEach(b=>b.classList.remove('on'));
     btn.classList.add('on');
     keepActiveTabVisible();
-    window.scrollTo({top:0, behavior:'smooth'});
+    window.scrollTo(0,0);
   }
   function openUnitRevenue(){
     document.getElementById('unitRevenueModal').classList.add('show');
